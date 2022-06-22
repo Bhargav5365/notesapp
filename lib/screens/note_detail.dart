@@ -5,6 +5,8 @@ import 'package:intl/intl.dart';
 import 'package:notes_app/db_helper.dart';
 import 'package:notes_app/notes.dart';
 
+import '../widgets.dart';
+
 class NoteDetail extends StatefulWidget {
   final String appBarTitle;
   final Note note;
@@ -36,6 +38,7 @@ class NoteDetailState extends State<NoteDetail> {
   Widget build(BuildContext context) {
     titleController.text = note.title;
     descriptionController.text = note.description;
+
     color = note.color;
     return WillPopScope(
       onWillPop: () async {
@@ -50,7 +53,7 @@ class NoteDetailState extends State<NoteDetail> {
             style: TextStyle(
                 fontSize: 20, fontWeight: FontWeight.w600, color: Colors.black),
           ),
-          backgroundColor: Colors.grey,
+          backgroundColor: colors[color],
           leading: IconButton(
               splashRadius: 22,
               icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
@@ -68,6 +71,7 @@ class NoteDetailState extends State<NoteDetail> {
           ],
         ),
         body: Container(
+          color: colors[color],
           child: Column(
             children: <Widget>[
               Padding(
@@ -101,6 +105,16 @@ class NoteDetailState extends State<NoteDetail> {
                     ),
                   ),
                 ),
+              ),
+              ColorPicker(
+                selectedIndex: note.color,
+                onTap: (index) {
+                  setState(() {
+                    color = index;
+                  });
+                  isEdited = true;
+                  note.color = index;
+                },
               ),
             ],
           ),

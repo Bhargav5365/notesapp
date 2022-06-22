@@ -1,14 +1,15 @@
+// ignore_for_file: unnecessary_getters_setters
+
 class Note {
   int _id;
   String _title;
   String _description;
   String _date;
-  int _priority, _color;
+  int _color;
 
-  Note(this._title, this._date, this._priority, this._color,
-      [this._description]);
+  Note(this._title, this._date, this._color, [this._description]);
 
-  Note.withId(this._id, this._title, this._date, this._priority, this._color,
+  Note.withId(this._id, this._title, this._date, this._color,
       [this._description]);
 
   int get id => _id;
@@ -17,7 +18,6 @@ class Note {
 
   String get description => _description;
 
-  int get priority => _priority;
   int get color => _color;
   String get date => _date;
 
@@ -30,12 +30,6 @@ class Note {
   set description(String newDescription) {
     if (newDescription.length <= 255) {
       _description = newDescription;
-    }
-  }
-
-  set priority(int newPriority) {
-    if (newPriority >= 1 && newPriority <= 3) {
-      _priority = newPriority;
     }
   }
 
@@ -56,7 +50,6 @@ class Note {
     }
     map['title'] = _title;
     map['description'] = _description;
-    map['priority'] = _priority;
     map['color'] = _color;
     map['date'] = _date;
 
@@ -67,7 +60,6 @@ class Note {
     _id = map['id'];
     _title = map['title'];
     _description = map['description'];
-    _priority = map['priority'];
     _color = map['color'];
     _date = map['date'];
   }

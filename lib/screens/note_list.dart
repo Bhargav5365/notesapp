@@ -9,6 +9,8 @@ import 'package:notes_app/notes.dart';
 import 'package:notes_app/screens/note_detail.dart';
 import 'package:sqflite/sqflite.dart';
 
+import '../widgets.dart';
+
 class NoteList extends StatefulWidget {
   const NoteList({Key key}) : super(key: key);
 
@@ -75,7 +77,7 @@ class NoteListState extends State<NoteList> {
             ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          navigateToDetail(Note('', '', 3, 0), 'Add Note');
+          navigateToDetail(Note('', '', 3), 'Add Note');
         },
         child: const Icon(Icons.add, color: Colors.black),
         backgroundColor: Colors.grey,
@@ -96,8 +98,8 @@ class NoteListState extends State<NoteList> {
           padding: const EdgeInsets.all(8.0),
           child: Container(
             decoration: BoxDecoration(
+              color: colors[noteList[index].color],
               borderRadius: BorderRadius.all(Radius.circular(15)),
-              color: Colors.grey[100],
             ),
             padding: const EdgeInsets.all(8.0),
             child: Column(
@@ -116,10 +118,6 @@ class NoteListState extends State<NoteList> {
                               color: Colors.black),
                         ),
                       ),
-                    ),
-                    Text(
-                      getPriorityText(noteList[index].priority),
-                      style: TextStyle(color: Colors.white),
                     ),
                   ],
                 ),
